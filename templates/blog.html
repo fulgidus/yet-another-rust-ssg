@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Blog - Rust SSG</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>📝 Il Mio Blog</h1>
+        <nav>
+            <a href="/index.html">Home</a> |
+            <a href="/blog.html">Blog</a> |
+            <a href="/about.html">About</a> |
+            <a href="/contact.html">Contact</a>
+            <div class="dark-mode-toggle">
+                <input type="checkbox" id="dark-mode-switch">
+                <label for="dark-mode-switch" class="toggle-label">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <ul>
+            {% for post in posts %}
+            <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </main>
+    <script>
+        if (document.body.getAttribute("data-prod") !== "true") {
+            const ws = new WebSocket("ws://localhost:3000/ws");
+            ws.onmessage = (event) => {
+                if (event.data === "reload") {
+                    console.log("🔄 Hot reload triggered");
+                    location.reload();
+                }
+            };
+        }
+
+
+
+        const toggleSwitch = document.getElementById("dark-mode-switch");
+
+        // Funzione per attivare/disattivare la modalità dark
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+            localStorage.setItem("dark-mode", document.body.classList.contains("dark-mode"));
+        }
+
+        // Carica la preferenza salvata
+        if (localStorage.getItem("dark-mode") === "true") {
+            document.body.classList.add("dark-mode");
+            toggleSwitch.checked = true;
+        }
+
+        // Assegna l'evento di cambio alla switch
+        toggleSwitch.addEventListener("change", toggleDarkMode);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+[package]
+name = "rust_ssg"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+pulldown-cmark = "0.13"                                # Parser Markdown
+tera = "1.0"                                           # Template engine (come Handlebars)
+serde = { version = "1.0.219", features = ["derive"] } # Per il frontmatter YAML
+serde_yaml = "0.9"
+walkdir = "2.3"                                        # Per leggere file in una cartella
+warp = "0.3.7"                                         # Server web veloce e asincrono
+tokio = { version = "1.44.1", features = ["full"] }    # Runtime async
+notify = "8.0.0"                                       # Hot reload per monitorare i file
+futures-util = "0.3"
+minify-html = "0.15.0"
