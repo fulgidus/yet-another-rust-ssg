@@ -63,11 +63,11 @@ This will:
 cargo run -- --prod
 ```
 
-### 🧠 Why Build This?
+## 🧠 Why Build This?
 
 Because learning Rust by building something from scratch is incredibly rewarding. This project is not meant to replace Hugo, Zola, or Astro — it’s a humble, self-contained SSG that taught me a lot about Rust, web tooling, and project structuring.
 
-### 🐾 License
+## 🐾 License
 
 This project is released under the MIT License.
 Feel free to fork, hack, or remix it for your own learning journey. 🎓
